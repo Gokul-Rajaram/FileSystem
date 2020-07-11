@@ -1,5 +1,7 @@
 package com.gokul.scala.FileSystem.Files
 
+import com.gokul.scala.FileSystem.FileSys.File
+
 class Directories(override val parentPath: String, override val name: String, val contents:List[DirEntry])
   extends DirEntry(parentPath,name) {
 
@@ -35,6 +37,8 @@ class Directories(override val parentPath: String, override val name: String, va
   def asDirectory: Directories = this
 
   def getType: String = "Folder"
+
+  def asFile: File = throw new FileSystemException("A folder cannot be converted to a file !")
 }
 
 //Creating object for having constants

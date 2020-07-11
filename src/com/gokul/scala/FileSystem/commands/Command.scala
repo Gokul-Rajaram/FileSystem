@@ -13,6 +13,8 @@ object Command{
 
   val MKDIR = "mkdir"   //constants
   val LS ="ls"
+  val PWD = "pwd"
+  val TOUCH = "touch"
 
   def emptyCommand: Command = new Command {
     override def apply(input:String,state: State):State = state
@@ -34,6 +36,13 @@ object Command{
     }
     else if(LS.equals(tokens(0))){
       new Ls
+    }
+    else if(PWD.equals(tokens(0))){
+      new pwd
+    }
+    else if(TOUCH.equals(tokens(0))){
+      if(tokens.length < 2) inCompleteCommand(TOUCH)
+      else new Touch(tokens(1))
     }
     else new UnknownCommand
   }
