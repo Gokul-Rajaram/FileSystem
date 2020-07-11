@@ -4,8 +4,9 @@ import com.gokul.scala.FileSystem.FileSys.State
 
 class UnknownCommand extends Command {
 
-  override def apply(state:State):State ={
-    state.setMessage("Command not found!")
+  override def apply(input:String,state:State):State ={
+    val message = s"'$input' is not recognized as an internal or external command."
+    state.setMessage(message)
   }
 
 }

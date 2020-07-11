@@ -20,7 +20,7 @@ object FileSystem extends App{
     state.show
     val input = scanner.nextLine()
     //below we are doing like we are obtaining a new state for the command user types
-    state = Command.from(input).apply(state)
+    state = Command.from(input).apply(input:String,state)
 
 
   }
