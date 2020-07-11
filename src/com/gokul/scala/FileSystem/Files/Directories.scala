@@ -34,11 +34,16 @@ class Directories(override val parentPath: String, override val name: String, va
     new Directories(parentPath,name,contents.filter(e => ! e.name.equals(entryName)) :+ newEntry)
   }
 
+  def isRoot: Boolean = parentPath.isEmpty
+
   def asDirectory: Directories = this
 
   def getType: String = "Folder"
 
   def asFile: File = throw new FileSystemException("A folder cannot be converted to a file !")
+
+  def isDirectory:Boolean = true
+  def isFile:Boolean = false
 }
 
 //Creating object for having constants
