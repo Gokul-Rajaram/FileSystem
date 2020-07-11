@@ -10,10 +10,31 @@ trait Command {
 }
 
 object Command{
+
+  val MKDIR = "mkdir"   //constants
+  val LS ="ls"
+
+  def emptyCommand: Command = new Command {
+    override def apply(input:String,state: State):State = state
+  }
+
+  def inCompleteCommand(name: String):Command = new Command {
+    override def apply(input: String, state: State): State =
+      state.setMessage(name + ": InComplete Command !!")
+  }
+
   def from(input: String):Command = {
     //input will be having all the statement which includes command and arguments passed so we need to split
     val tokens: Array[String] = input.split(" ")
 
-    new UnknownCommand
+    if(input.isEmpty || tokens.isEmpty) emptyCommand
+    else if (MKDIR.equals(tokens(0))) {
+      if(tokens.length < 2) inCompleteCommand(MKDIR)
+      else new Mkdir(tokens(1))
+    }
+    else if(LS.equals(tokens(0))){
+      new Ls
+    }
+    else new UnknownCommand
   }
 }

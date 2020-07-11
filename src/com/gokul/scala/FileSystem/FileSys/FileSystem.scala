@@ -18,6 +18,7 @@ object FileSystem extends App{
     //println(scanner.nextLine())       //nextline denotes the input datatype as string similarly there is nextint etc.,
 
     state.show
+
     val input = scanner.nextLine()
     //below we are doing like we are obtaining a new state for the command user types
     state = Command.from(input).apply(input:String,state)
